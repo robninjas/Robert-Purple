@@ -411,6 +411,7 @@ GameObject:
   - component: {fileID: 7054784418385933195}
   - component: {fileID: 7054784418385933192}
   - component: {fileID: 4449419992342842094}
+  - component: {fileID: 6566043165642522701}
   - component: {fileID: 4855579239002509365}
   m_Layer: 7
   m_Name: Ghost_base
@@ -495,6 +496,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6566043165642522701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054784418385933193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c0aa2bf05d16d49bf5bfba5168470d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  initialDirection: {x: 0, y: 0}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  body: {fileID: 0}
+  eyes: {fileID: 0}
+  blue: {fileID: 0}
+  white: {fileID: 0}
+  atHome: 0
+  homeDuration: 0
 --- !u!212 &4855579239002509365
 SpriteRenderer:
   m_ObjectHideFlags: 0
