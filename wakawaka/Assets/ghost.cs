@@ -13,6 +13,8 @@ public class ghost : movement
 
     private bool frightened;
 
+    private int counter;
+
     private void Awake()
     {
         
@@ -23,6 +25,12 @@ public class ghost : movement
 
     }
 
+    protected override void FixedChild()
+    {
+        //counter += 1;
+        //Debug.Log(counter);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
@@ -30,23 +38,15 @@ public class ghost : movement
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        node node_ = collision.GetComponent<node>();
+        Debug.Log(collision.gameObject.name);
 
-        if (node_ != null)
+        node _node = collision.GetComponent<node>();
+
+        if (_node != null)
         {
-            int index = Random.Range(0, node_.availableDirections.Count);
+            int index = Random.Range(0, _node.availableDirections.Count);
 
-            if (node_.availableDirections[index] == -direction)
-            {
-                index += 1;
-
-                if (index == node_.availableDirections.Count)
-                {
-                    index = 0;
-                }
-            }
-
-            SetDirection(node_.availableDirections[index]);
+            SetDirection(_node.availableDirections[index]);
         }
     }
 

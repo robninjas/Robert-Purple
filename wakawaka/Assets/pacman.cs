@@ -16,4 +16,9 @@ public class pacman : movement
 
         transform.right = direction;
     }
+
+    protected override void FixedChild()
+    {
+        
+    }
 }

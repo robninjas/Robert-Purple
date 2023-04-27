@@ -5,14 +5,15 @@ using UnityEngine;
 public abstract class movement : MonoBehaviour
 {
     abstract protected void ChildUpdate();
+    abstract protected void FixedChild();
 
     public float speed;
     public Vector2 initialDirection;
     public LayerMask obstacleLayer;
 
     protected Rigidbody2D rb;
-    protected Vector2 direction;
-    protected Vector2 nextDirection;
+    public Vector2 direction;
+    public Vector2 nextDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,9 @@ public abstract class movement : MonoBehaviour
         {
             SetDirection(nextDirection);
         }
-
+        //Vector2 position = rb.position;
+        //Vector2 translation = direction * speed * Time.deltaTime;
+        //rb.MovePosition(position + translation);
         ChildUpdate();
     }
     
@@ -37,13 +40,14 @@ public abstract class movement : MonoBehaviour
     {
         Vector2 position = rb.position;
         Vector2 translation = direction * speed * Time.fixedDeltaTime;
-
         rb.MovePosition(position + translation);
+
+        FixedChild();
     }
 
     private bool Occupied(Vector2 newDirection)
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.zero * .75f, 0f, newDirection, 1.5f, obstacleLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * .75f, 0f, newDirection, 1.5f, obstacleLayer);
         return hit.collider != null;
     }
 
@@ -52,6 +56,7 @@ public abstract class movement : MonoBehaviour
         if (!Occupied(newDirection))
         {
             direction = newDirection;
+            Debug.Log(newDirection);
             nextDirection = Vector2.zero;
         }
 
