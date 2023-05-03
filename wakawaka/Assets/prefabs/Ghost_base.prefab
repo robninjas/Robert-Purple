@@ -515,10 +515,10 @@ MonoBehaviour:
     m_Bits: 256
   direction: {x: 0, y: 0}
   nextDirection: {x: 0, y: 0}
-  body: {fileID: 0}
-  eyes: {fileID: 0}
-  blue: {fileID: 0}
-  white: {fileID: 0}
+  body: {fileID: 7054784417801733153}
+  eyes: {fileID: 7054784416962468008}
+  blue: {fileID: 7054784416380879058}
+  white: {fileID: 7054784418014561242}
   atHome: 0
   homeDuration: 0
 --- !u!212 &4855579239002509365

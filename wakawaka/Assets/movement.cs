@@ -56,7 +56,7 @@ public abstract class movement : MonoBehaviour
         if (!Occupied(newDirection))
         {
             direction = newDirection;
-            Debug.Log(newDirection);
+            // Debug.Log(newDirection);
             nextDirection = Vector2.zero;
         }
 

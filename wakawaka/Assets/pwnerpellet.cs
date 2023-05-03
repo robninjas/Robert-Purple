@@ -12,7 +12,7 @@ public class pwnerpellet : pellet
 
         foreach (GameObject ghost in ghosts)
         {
-
+            ghost.GetComponent<ghost>().Frighten();
         }
     }
 }
