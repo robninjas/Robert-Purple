@@ -10,7 +10,7 @@ public class Goomba : MonoBehaviour
         {
             if (collision.transform.position.y > transform.position.y + .4f)
             {
-                GetComponent<Animator>().SetTrigger("death");
+                GetComponent<Animator>().SetTrigger("Death");
                 GetComponent<CircleCollider2D>().enabled = false;
                 GetComponent<NMEmovement>().enabled = false;
 

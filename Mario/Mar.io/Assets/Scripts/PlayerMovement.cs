@@ -32,6 +32,44 @@ public class PlayerMovement : MonoBehaviour
         Jump();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        float distance = .375f;
+
+        if (GetComponent<PlayerBehaviour>().big)
+        {
+            distance += 1f;
+        }
+        RaycastHit2D hitTop = Physics2D.CircleCast(rb.position, .25f, Vector2.up, distance, LayerMask.GetMask("Default"));
+
+        if (hitTop.collider != null)
+        {
+            Vector3 velocity = rb.velocity;
+            velocity.y = 0;
+            rb.velocity = velocity;
+            jumping = false;
+
+            BlockHit blockHit = hitTop.collider.gameObject.GetComponent<BlockHit>();
+
+            if (blockHit != null)
+            {
+                blockHit.Hit();
+            }
+        }
+
+
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("FakeBlock"))
+        {
+            collision.GetComponent<BoxCollider2D>().gameObject.SetActive(false);
+            collision.GetComponent<CircleCollider2D>().gameObject.SetActive(true);
+        }
+    }
+
     private void ResetJumping()
     {
         jumping = false;

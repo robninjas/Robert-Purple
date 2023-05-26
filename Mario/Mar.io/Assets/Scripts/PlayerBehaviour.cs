@@ -50,7 +50,7 @@ public class PlayerBehaviour : MonoBehaviour
         StartCoroutine("ChangeSize");
     }
 
-    private void Death()
+    public void Death()
     {
         smallAnimator.SetTrigger("death");
 
