@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8663901994963363086, guid: 6cd22f941301fbc41be88270db492364, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 996159360463731725, guid: 6cd22f941301fbc41be88270db492364, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -14,7 +18,11 @@ PrefabInstance:
     - target: {fileID: 3598310677340214877, guid: 6cd22f941301fbc41be88270db492364, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e3fa7af05576d5944b9a94d472c0aa89, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 3598310677340214877, guid: 6cd22f941301fbc41be88270db492364, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4234714527244032182, guid: 6cd22f941301fbc41be88270db492364, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -63,6 +71,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FakeBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 5376550817476862876, guid: 6cd22f941301fbc41be88270db492364, type: 3}
+      propertyPath: m_TagString
+      value: FakeBlock
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cd22f941301fbc41be88270db492364, type: 3}
 --- !u!1 &7984725935357576095 stripped
@@ -98,3 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39b64d5100418142be0189c6075223e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  maxHits: -1
+  emptyBlock: {fileID: 0}
+  blocks: []

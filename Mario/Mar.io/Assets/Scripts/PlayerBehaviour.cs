@@ -29,8 +29,8 @@ public class PlayerBehaviour : MonoBehaviour
         smallRenderer.enabled = true;
         bigRenderer.enabled = false;
 
-        GetComponent<CapsuleCollider2D>().size = Vector2.one;
-        GetComponent<CapsuleCollider2D>().offset = Vector2.zero;
+        GetComponent<BoxCollider2D>().size = Vector2.one;
+        GetComponent<BoxCollider2D>().offset = Vector2.zero;
 
         big = false;
         StartCoroutine("ChangeSize");
@@ -43,8 +43,8 @@ public class PlayerBehaviour : MonoBehaviour
         smallRenderer.enabled = false;
         bigRenderer.enabled = true;
 
-        GetComponent<CapsuleCollider2D>().size = new Vector2(1f, 2f);
-        GetComponent<CapsuleCollider2D>().offset = new Vector2(0, .5f);
+        GetComponent<BoxCollider2D>().size = new Vector2(1f, 2f);
+        GetComponent<BoxCollider2D>().offset = new Vector2(0, .5f);
 
         big = true;
         StartCoroutine("ChangeSize");
@@ -54,7 +54,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         smallAnimator.SetTrigger("death");
 
-        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
 
         GetComponent<Rigidbody2D>().velocity = Vector2.up * 10;
         GetComponent<PlayerMovement>().enabled = false;
@@ -66,7 +66,7 @@ public class PlayerBehaviour : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         Vector3 velocity = rb.velocity;
         GetComponent<PlayerMovement>().enabled = false;
-        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
 
@@ -80,7 +80,7 @@ public class PlayerBehaviour : MonoBehaviour
         rb.isKinematic = false;
         rb.velocity = velocity;
         GetComponent<PlayerMovement>().enabled = true;
-        GetComponent<CapsuleCollider2D>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 
     // Update is called once per frame

@@ -8,10 +8,12 @@ public class FakeBlock : MonoBehaviour
     public int maxHits = -1;
     public Sprite emptyBlock;
     private Animator animator;
+    public List<GameObject> blocks;
 
     // Start is called before the first frame update
     void Start()
     {
+        blocks.Add(gameObject);
         animator = GetComponentInChildren<Animator>();
     }
 

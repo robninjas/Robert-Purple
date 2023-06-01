@@ -61,12 +61,23 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void haha(GameObject c)
+    {
+        c.GetComponent<BoxCollider2D>().enabled = false;
+        c.GetComponent<CircleCollider2D>().enabled = true;
+        c.gameObject.GetComponent<SpriteRenderer>().sprite = c.gameObject.GetComponent<BlockHit>().emptyBlock;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("FakeBlock"))
         {
-            collision.GetComponent<BoxCollider2D>().gameObject.SetActive(false);
-            collision.GetComponent<CircleCollider2D>().gameObject.SetActive(true);
+            haha(collision.gameObject);
+
+            foreach (GameObject obj in collision.gameObject.GetComponent<FakeBlock>().blocks)
+            {
+                haha(obj);
+            }
         }
     }
 
