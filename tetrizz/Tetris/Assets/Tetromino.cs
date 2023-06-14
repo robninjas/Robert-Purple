@@ -15,70 +15,55 @@ public class Tetromino : MonoBehaviour
 
     public static Transform[,] grid = new Transform[width, height];
 
-    public void checklines()
+    public void CheckLines()
     {
-        for (int i = height - 1; 1 >= 0; i--) {
-            if (hasline(i))
+        for (int i = height - 1; i >= 0; i--)
+        {
+            if (HasLine(i))
             {
-                deleteline(i);
-                rowdown(i);
+                DeleteLine(i);
+                RowDown(i);
             }
         }
     }
 
-    public bool hasline(int i)
+    public void RowDown(int i)
     {
-        for (int j=0; j < width; j++)
+        for (int y = i; y<height; y++)
         {
-            try
+            for (int x = 0; x < width; x ++)
             {
-                if (grid[j, i] == null)
+                if (grid[x,y])
                 {
-                    return false;
+                    grid[x, y - 1] = grid[x, y];
+                    grid[x, y] = null;
+                    grid[x, y - 1].transform.position += Vector3.down;
                 }
-
-                return true;
             }
+        }
+    }
 
-            catch
+    public void DeleteLine(int i)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            Destroy(grid[j, i].gameObject);
+            grid[j, i] = null;
+        }
+    }
+ 
+    public bool HasLine(int i)
+    {
+        for (int j=0; j<width; j++)
+        {
+            if (grid[j,i] == null)
             {
                 return false;
             }
         }
 
-        return false;
+        return true;
     }
-
-    public void deleteline(int i)
-    {
-        for (int j = 0; j < width; j++)
-        {
-            try
-            {
-            Destroy(grid[j, i].gameObject);
-            grid[j, i] = null;
-            }
-
-            catch { }
-        }
-    }
-
-    public void rowdown(int i)
-    {
-        for (int y = i; y < height; y++)
-        {
-            for (int x = 0; x < width; x++)
-            {
-                    if (grid[x, y] != null)
-                    {
-                        grid[x, y - 1] = grid[x, y];
-                        grid[x, y] = null;
-                        grid[x, y - 1].transform.position += Vector3.down;
-                    }
-            }
-        }
-    }
-
     // Update is called once per frame
 
     public void AddToGrid ()
@@ -94,62 +79,26 @@ public class Tetromino : MonoBehaviour
 
     public bool ValidMove()
     {
+
         foreach (Transform child in transform)
         {
+
             int x = Mathf.RoundToInt(child.transform.position.x);
             int y = Mathf.RoundToInt(child.transform.position.y);
-
-            int x_access = 0;
-            int y_access = 0;
-
-            //y = Mathf.Clamp(y, 5, 9999);
-
-            if (x > 0)
-            {
-                x_access = x - 1;
-            }
-
-
-            //if (y > 0)
-            //{
-            //    y_access = y;
-            //}
-
-
-            //if (y > 0 && grid[x_access, y] != null)
-            //{
-            //    return false;
-            //}
-
-            try
-            {
-                if (grid[x, y] != null)
-                {
-                    //print("X: " + x.ToString());
-                    //print("Y: " + y.ToString());
-
-
-                    return false;
-                }
-            }
-
-            catch (Exception e)
-            {
-                //print("X: " + x.ToString());
-                //print("Y: " + y.ToString());
-
-                //print(e.ToString());
-            }
-
-
-
-            if (x < 0 || y < 0 || x >= width || y >= height)
+            print(x);
+            print(y);
+            if (x < 0 || y < 0 || x > width-1 || y > height-1)
             {
                 return false;
             }
+            if (grid[x, y] != null)
+            {
+                return false;
+            }
+
         }
 
-        return true;
+            return true;
     }
 
     void Update()
@@ -192,8 +141,9 @@ public class Tetromino : MonoBehaviour
                 transform.position -= Vector3.down;
                 this.enabled = false; 
                 AddToGrid();
-                checklines();
-                FindObjectOfType<Spwner>().spwntetromino(); }
+                CheckLines();
+                FindObjectOfType<Spwner>().spwntetromino(); 
+            }
 
             previousTime = Time.time;
         }
